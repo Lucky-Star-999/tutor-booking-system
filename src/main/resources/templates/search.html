@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+  </script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+    integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <link rel="stylesheet" th:href="@{static/styles.css}">
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg mx-3">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">
+        <img th:src="@{static/img/logo.PNG}" alt="Logo" height="40">
+      </a>
+
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item me-4">
+            <a class="nav-link" href="#">Home</a>
+          </li>
+          <li class="nav-item me-4">
+            <a class="nav-link" href="#">For Parents</a>
+          </li>
+          <li class="nav-item me-4">
+            <a class="nav-link" href="#">For Tutors</a>
+          </li>
+          <li class="nav-item me-4">
+            <a class="nav-link" href="#">News</a>
+          </li>
+        </ul>
+
+        <div class="d-flex align-items-center ">
+          <form action="/search-text" class="d-flex align-items-center" method="post">
+            <div class="input-group">
+              <span class="input-group-text">
+                <i class="fa-solid fa-magnifying-glass"></i>
+              </span>
+              <input class="form-control me-2" placeholder="Search for class, tutor" style="height: 40px;"
+                th:name="name">
+            </div>
+            <button class="btn btn-primary" type="submit" style="width: 200px">Find a Tutor</button>
+          </form>
+          <div class="ms-2">
+            <form action="/tutor-login" method="POST">
+              <button class="btn btn-secondary" type="submit">Tutor Login</button>
+            </form>
+
+          </div>
+          <div class="ms-2">
+            <form action="/student-login" method="POST">
+              <button class="btn btn-warning" type="submit">Student Login</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </nav>
+  <!--<p th:text="${tutor_search_each.fullname}"></p>-->
+  <div class="" style="background-color: #f4f5f6; padding: 25px 150px;">
+    <h3 class="mb-4">Searched Tutors</h3>
+    <div class="row">
+
+
+
+      <div class="col-3 mb-4" th:each="tutor_search_each: ${tutor_search}">
+        <div class="card" style="height:470px; overflow:auto;">
+          <div class="card-body">
+            <div class="d-flex">
+              <img th:src="@{static/img/avatar.PNG}" alt="Avatar" height="100">
+              <div class="ms-4">
+                <p class="fw-bold mb-1 fs-5" th:text="${tutor_search_each.fullname}">Khoa Nguyen</p>
+                <p class="" th:text="${tutor_search_each.about}">Master of Education</p>
+              </div>
+            </div>
+            <div class="mb-1">
+              <strong>Subjects: </strong>
+              <span th:text="${tutor_search_each.beautifyList(tutor_search_each.subjects)}">Maths, Physics, Chemistry,
+                English,
+                Literature</span>
+            </div>
+            <div class="mb-1">
+              <strong>Open to grades: </strong>
+              <span th:text="${tutor_search_each.beautifyList(tutor_search_each.grades)}">grade 1 - 12, college
+                preparation</span>
+            </div>
+            <div class="">
+              <div class="mb-1 d-flex align-items-center">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M3.33333 2H12.6667C13.403 2 14 2.59695 14 3.33333V12.6667C14 13.403 13.403 14 12.6667 14H3.33333C2.59695 14 2 13.403 2 12.6667V3.33333C2 2.59695 2.59695 2 3.33333 2ZM12.6667 12.6667V3.33333H3.33333V12.6667H12.6667ZM8 7.5C8.82843 7.5 9.5 6.82843 9.5 6C9.5 5.17157 8.82843 4.5 8 4.5C7.17157 4.5 6.5 5.17157 6.5 6C6.49822 6.39837 6.65568 6.78094 6.93737 7.06263C7.21906 7.34432 7.60163 7.50178 8 7.5ZM11.2603 11.0952C11.1691 11.2435 11.0074 11.3337 10.8333 11.3333H5.16667C4.99497 11.3291 4.83745 11.2371 4.74949 11.0896C4.66152 10.9421 4.65542 10.7597 4.73333 10.6067L5.33333 9.4C5.55818 8.95376 6.01366 8.67069 6.51333 8.66667H9.48667C9.98634 8.67069 10.4418 8.95376 10.6667 9.4L11.28 10.6067C11.3589 10.7618 11.3514 10.9469 11.2603 11.0952Z"
+                    fill="#636769">
+                  </path>
+                </svg>
+                <span class="ms-2" th:text="${tutor_search_each.date_of_birth}">Age 38</span>
+              </div>
+              <div class="mb-1 d-flex align-items-center">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M9.86272 1.33331C9.59579 1.33345 9.33121 1.38318 9.08247 1.47998L8.7757 1.59331C8.52833 1.68601 8.26629 1.73344 8.00212 1.73331C7.73794 1.73344 7.4759 1.68601 7.22853 1.59331L6.92177 1.47998C5.84277 1.06352 4.6265 1.56452 4.1542 2.61998L4.00082 2.91998C3.78079 3.39706 3.39771 3.78001 2.92047 3.99998L2.62037 4.13331C1.56717 4.60796 1.06702 5.82138 1.48001 6.89998L1.59338 7.20664C1.78691 7.70405 1.78691 8.2559 1.59338 8.75331L1.48001 9.05998C1.06702 10.1386 1.56717 11.352 2.62037 11.8266L2.92047 11.96C3.40467 12.1898 3.78867 12.5879 4.00082 13.08L4.1342 13.38C4.6065 14.4354 5.82277 14.9364 6.90176 14.52L7.20853 14.4066C7.70736 14.22 8.25686 14.22 8.75569 14.4066L9.06246 14.52C10.1415 14.9364 11.3577 14.4354 11.83 13.38L11.9634 13.08C12.1933 12.5959 12.5915 12.2121 13.0838 12L13.3839 11.8666C14.4371 11.392 14.9372 10.1786 14.5242 9.09998L14.4109 8.79331C14.2173 8.2959 14.2173 7.74405 14.4109 7.24664L14.5242 6.93998C14.9372 5.86137 14.4371 4.64796 13.3839 4.17331L13.0838 3.99998C12.6065 3.78001 12.2234 3.39706 12.0034 2.91998L11.87 2.61998C11.5179 1.83203 10.7327 1.32706 9.86939 1.33331H9.86272ZM9.86272 2.66664C10.1937 2.66432 10.4946 2.85793 10.6296 3.15998L10.7697 3.46664C11.1242 4.2547 11.7553 4.88558 12.5436 5.23998L12.837 5.36664C13.2497 5.55751 13.4426 6.03652 13.2772 6.45998L13.1705 6.74664C12.8603 7.54653 12.8603 8.43342 13.1705 9.23331L13.2838 9.55998C13.4477 9.9742 13.2568 10.4441 12.8504 10.6266L12.5436 10.7666C11.7553 11.121 11.1242 11.7519 10.7697 12.54L10.643 12.8333C10.5063 13.1378 10.2033 13.3337 9.86939 13.3333C9.76006 13.3315 9.65182 13.3113 9.54928 13.2733L9.26252 13.1666C8.86116 13.0091 8.43331 12.9299 8.00212 12.9333C7.58023 12.9302 7.16158 13.0071 6.76838 13.16L6.44161 13.2733C6.34652 13.3129 6.24453 13.3333 6.14151 13.3333C5.81058 13.3356 5.50961 13.142 5.3746 12.84L5.23455 12.5333C4.88005 11.7452 4.24896 11.1144 3.46065 10.76L3.16722 10.6666C2.7545 10.4758 2.56167 9.99677 2.72708 9.57331L2.83378 9.28664C3.14395 8.48675 3.14395 7.59987 2.83378 6.79998L2.72041 6.47331C2.55649 6.05908 2.74743 5.58923 3.15388 5.40664L3.46065 5.26664C4.25738 4.90546 4.89181 4.26173 5.24122 3.45998L5.36793 3.16664C5.50465 2.8621 5.8076 2.66629 6.14151 2.66664C6.25084 2.66841 6.35908 2.68869 6.46162 2.72664L6.74838 2.83331C7.14766 2.99004 7.57317 3.06923 8.00212 3.06664C8.424 3.06979 8.84265 2.99288 9.23585 2.83998L9.56262 2.72664C9.65771 2.68703 9.7597 2.66664 9.86272 2.66664ZM10.3162 5.56664C10.3149 5.56664 10.3135 5.56664 10.3122 5.56664H10.3162ZM10.3062 5.56673C10.3042 5.56669 10.3022 5.56666 10.3002 5.56664H10.3122C10.3102 5.56666 10.3082 5.56669 10.3062 5.56673ZM10.3062 5.56673C10.3896 5.56873 10.4694 5.60193 10.5296 5.65998L10.883 6.01331C10.9462 6.0759 10.9817 6.1611 10.9817 6.24998C10.9817 6.33886 10.9462 6.42405 10.883 6.48664L7.13517 10.2333C7.07403 10.2967 6.98987 10.3328 6.90176 10.3333C6.81333 10.3344 6.72856 10.2981 6.66835 10.2333L5.10118 8.65331C5.03805 8.59072 5.00255 8.50552 5.00255 8.41664C5.00255 8.32776 5.03805 8.24257 5.10118 8.17998L5.45462 7.82664C5.51513 7.76219 5.59961 7.72563 5.68803 7.72563C5.77645 7.72563 5.86093 7.76219 5.92144 7.82664L6.92177 8.81998L10.0828 5.65998C10.143 5.60193 10.2228 5.56873 10.3062 5.56673Z"
+                    fill="#636769"></path>
+                </svg>
+                <span class="ms-2">
+                  Degree: <span th:text="${tutor_search_each.qualification}">Master Degreee</span>
+                </span>
+
+              </div>
+              <div class="mb-1 d-flex align-items-center">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M15.0001 12.6667H12.6667V2.66667C12.6667 2.29848 12.3683 2 12.0001 2H4.00008C3.63189 2 3.33341 2.29848 3.33341 2.66667V12.6667H1.00008C0.815986 12.6667 0.666748 12.8159 0.666748 13V13.6667C0.666748 13.8508 0.815986 14 1.00008 14H15.0001C15.1842 14 15.3334 13.8508 15.3334 13.6667V13C15.3334 12.8159 15.1842 12.6667 15.0001 12.6667ZM11.0001 7.33333H10.3334C10.1493 7.33333 10.0001 7.18409 10.0001 7V6.33333C10.0001 6.14924 10.1493 6 10.3334 6H11.0001C11.1842 6 11.3334 6.14924 11.3334 6.33333V7C11.3334 7.18409 11.1842 7.33333 11.0001 7.33333ZM5.00008 7.33333H5.66675C5.85084 7.33333 6.00008 7.18409 6.00008 7V6.33333C6.00008 6.14924 5.85084 6 5.66675 6H5.00008C4.81599 6 4.66675 6.14924 4.66675 6.33333V7C4.66675 7.18409 4.81599 7.33333 5.00008 7.33333ZM6.00008 9V9.66667C6.00008 9.85076 5.85084 10 5.66675 10H5.00008C4.81599 10 4.66675 9.85076 4.66675 9.66667V9C4.66675 8.81591 4.81599 8.66667 5.00008 8.66667H5.66675C5.85084 8.66667 6.00008 8.81591 6.00008 9ZM11.0001 8.66667H10.3334C10.1493 8.66667 10.0001 8.81591 10.0001 9V9.66667C10.0001 9.85076 10.1493 10 10.3334 10H11.0001C11.1842 10 11.3334 9.85076 11.3334 9.66667V9C11.3334 8.81591 11.1842 8.66667 11.0001 8.66667ZM11.0001 4.66667H10.3334C10.1493 4.66667 10.0001 4.51743 10.0001 4.33333V3.66667C10.0001 3.48257 10.1493 3.33333 10.3334 3.33333H11.0001C11.1842 3.33333 11.3334 3.48257 11.3334 3.66667V4.33333C11.3334 4.51743 11.1842 4.66667 11.0001 4.66667ZM6.00008 4.33333V3.66667C6.00008 3.48257 5.85084 3.33333 5.66675 3.33333H5.00008C4.81599 3.33333 4.66675 3.48257 4.66675 3.66667V4.33333C4.66675 4.51743 4.81599 4.66667 5.00008 4.66667H5.66675C5.85084 4.66667 6.00008 4.51743 6.00008 4.33333ZM5.00008 11.3333H11.0001C11.1842 11.3333 11.3334 11.4826 11.3334 11.6667V12.6667H4.66675V11.6667C4.66675 11.4826 4.81599 11.3333 5.00008 11.3333ZM7.66675 7.33333H8.33342C8.51751 7.33333 8.66675 7.18409 8.66675 7V6.33333C8.66675 6.14924 8.51751 6 8.33342 6H7.66675C7.48265 6 7.33342 6.14924 7.33342 6.33333V7C7.33342 7.18409 7.48265 7.33333 7.66675 7.33333ZM7.66675 8.66667H8.33342C8.51751 8.66667 8.66675 8.81591 8.66675 9V9.66667C8.66675 9.85076 8.51751 10 8.33342 10H7.66675C7.48265 10 7.33342 9.85076 7.33342 9.66667V9C7.33342 8.81591 7.48265 8.66667 7.66675 8.66667ZM7.66675 4.66667H8.33342C8.51751 4.66667 8.66675 4.51743 8.66675 4.33333V3.66667C8.66675 3.48257 8.51751 3.33333 8.33342 3.33333H7.66675C7.48265 3.33333 7.33342 3.48257 7.33342 3.66667V4.33333C7.33342 4.51743 7.48265 4.66667 7.66675 4.66667Z"
+                    fill="#636769"></path>
+                </svg>
+                <span class="ms-2" th:text="${tutor_search_each.graduated_school}">University of Science</span>
+              </div>
+              <div class="mb-1 d-flex align-items-center">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M14.5199 6.34L8.73992 2.17333C8.57494 2.06054 8.37977 2.00013 8.17992 2H7.81992C7.62007 2.00013 7.4249 2.06054 7.25992 2.17333L1.47992 6.34C1.38813 6.40061 1.33301 6.50334 1.33325 6.61333V6.72C1.33301 6.82999 1.38813 6.93272 1.47992 6.99333L7.25992 11.16C7.4249 11.2728 7.62007 11.3332 7.81992 11.3333H8.17992C8.37977 11.3332 8.57494 11.2728 8.73992 11.16L13.4999 7.73333V13.6667C13.4999 13.8508 13.6492 14 13.8333 14H14.3333C14.5174 14 14.6666 13.8508 14.6666 13.6667V6.61333C14.6668 6.50334 14.6117 6.40061 14.5199 6.34ZM8.07325 10H7.93325L3.33325 6.66667L7.95325 3.33333H8.09325L12.6666 6.66667L8.07325 10ZM6.57325 12.1067C6.93991 12.3599 7.37431 12.497 7.81992 12.5H8.17992C8.61554 12.4989 9.0407 12.3664 9.39992 12.12L11.9999 10.2467V11.3333C11.9999 12.8067 10.2066 14 7.99992 14C5.79325 14 3.99992 12.8067 3.99992 11.3333V10.2467L6.57325 12.1067Z"
+                    fill="#636769"></path>
+                </svg>
+                <span class="ms-2">
+                  Major in <span th:text="${tutor_search_each.major}">Major in Math Education</span>
+                </span>
+              </div>
+              <div class="mb-1 d-flex align-items-center">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M2.66675 6.66665C2.66675 3.72113 5.05456 1.33331 8.00008 1.33331C10.9456 1.33331 13.3334 3.72113 13.3334 6.66665C13.3334 9.17094 12.1176 10.1507 10.9842 11.064C10.2409 11.663 9.53304 12.2334 9.22675 13.1866L8.88675 14.2133C8.79142 14.4969 8.51885 14.6822 8.22008 14.6666H7.84675C7.54798 14.6822 7.27541 14.4969 7.18008 14.2133L6.84008 13.1866C6.52152 12.2362 5.80373 11.6663 5.0517 11.0693C3.89941 10.1544 2.66675 9.17577 2.66675 6.66665ZM6.00008 6.66665C6.00008 7.77122 6.89551 8.66665 8.00008 8.66665C8.53051 8.66665 9.03922 8.45593 9.41429 8.08086C9.78937 7.70579 10.0001 7.19708 10.0001 6.66665C10.0001 5.56208 9.10465 4.66665 8.00008 4.66665C6.89551 4.66665 6.00008 5.56208 6.00008 6.66665Z"
+                    fill="#636769"></path>
+                </svg>
+                <span class="ms-2" th:text="${tutor_search_each.address}">Binh Thanh</span>
+              </div>
+              <div class="mb-1 d-flex align-items-center">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M13.9999 2.66669H1.99992C1.63173 2.66669 1.33325 2.96516 1.33325 3.33335V12.6667C1.33325 13.0349 1.63173 13.3334 1.99992 13.3334H13.9999C14.3681 13.3334 14.6666 13.0349 14.6666 12.6667V3.33335C14.6666 2.96516 14.3681 2.66669 13.9999 2.66669ZM5.33325 12C5.33325 10.5273 4.13934 9.33335 2.66659 9.33335V6.66669C4.13934 6.66669 5.33325 5.47278 5.33325 4.00002H10.6666C10.6666 5.47278 11.8605 6.66669 13.3333 6.66669V9.33335C11.8605 9.33335 10.6666 10.5273 10.6666 12H5.33325ZM5.99992 8.00002C5.99992 6.89545 6.89535 6.00002 7.99992 6.00002C9.10449 6.00002 9.99992 6.89545 9.99992 8.00002C9.99992 9.10459 9.10449 10 7.99992 10C6.89535 10 5.99992 9.10459 5.99992 8.00002Z"
+                    fill="#636769"></path>
+                </svg>
+                <span class="ms-2" th:text="${tutor_search_each.minimum_salary_requirement}">Minimum of 200000
+                  đ/section</span>
+              </div>
+            </div>
+            <form th:action="@{/global-detail-tutor}" class="mt-3 d-flex align-items-center justify-content-center"
+              method="POST">
+              <button type="submit"
+                class="h-10 w-24 inline-flex items-center justify-center rounded-md border 
+                            border-transparent bg-primary-default px-4 py-2 text-sm font-medium text-white 
+                            hover:bg-primary-dark focus:outline-none focus-visible:ring-primary-default">Detail</button>
+              <input hidden type="text" th:name="tutorId" th:value="${tutor_search_each.tutor_id}">
+            </form>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+
+
+
+
+    </div>
+
+    <a href="#" class="inline-flex h-11 w-fit items-center justify-center 
+        rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-bold 
+        text-primary-default hover:bg-gray-300 focus:outline-none 
+        focus-visible:ring-primary-default text-decoration-none">Show more</a>
+  </div>
+
+  <footer class="" style="padding: 25px 150px; background-color: #f3f4f5;">
+    <div class="row">
+      <div class="col-4">
+        <div class="d-flex flex-column">
+          <strong class="mb-2 fs-4">Subjects</strong>
+          <a href="/search-subject+Math" class="mb-2 text-decoration-none text-secondary">Maths</a>
+          <a href="#" class="mb-2 text-decoration-none text-secondary">Literature</a>
+          <a href="#" class="mb-2 text-decoration-none text-secondary">English</a>
+          <a href="#" class="mb-2 text-decoration-none text-secondary">Physics</a>
+          <a href="#" class="mb-2 text-decoration-none text-secondary">Chemistry</a>
+          <a href="#" class="mb-2 text-decoration-none text-secondary">Geography</a>
+          <a href="#" class="mb-2 text-decoration-none text-secondary">History</a>
+          <a href="#" class="mb-2 text-decoration-none text-secondary">Biology</a>
+          <a href="#" class="mb-2 text-decoration-none text-secondary">Technology</a>
+          <a href="#" class="mb-2 text-decoration-none text-secondary">Information Technology</a>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="d-flex flex-column">
+          <strong class="mb-2 fs-4">About</strong>
+          <a href="#" class="mb-2 text-decoration-none text-secondary">Careers</a>
+          <a href="#" class="mb-2 text-decoration-none text-secondary">Blogs</a>
+          <a href="#" class="mb-2 text-decoration-none text-secondary">Become a tutor</a>
+          <a href="#" class="mb-2 text-decoration-none text-secondary">Privacy Policy</a>
+          <a href="#" class="mb-2 text-decoration-none text-secondary">Terms of Service</a>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="d-flex flex-column">
+          <strong class="mb-2 fs-4">Support</strong>
+          <a href="#" class="mb-2 text-decoration-none text-secondary">Help & Support</a>
+          <a href="#" class="mb-2 text-decoration-none text-secondary">Trust & Safety</a>
+          <a href="#" class="mb-2 text-decoration-none text-secondary">Payment Policy</a>
+          <a href="#" class="mb-2 text-decoration-none text-secondary">Refund Policy</a>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <div>
+      © 2022, Home Tutor
+    </div>
+  </footer>
+</body>

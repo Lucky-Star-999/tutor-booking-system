@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Login</title>
+    <meta name="description" content="Login to HomeTutor">
+    <meta name="next-head-count" content="5">
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="true">
+
+    <link rel="stylesheet" th:href="@{/static/login.css}">
+    <link rel="stylesheet" th:href="@{/static/login-css2.css}">
+    <style>
+    </style><noscript id="__next_css__DO_NOT_USE__"></noscript>
+</head>
+
+<body class="text-gray-900 selection:bg-blue-300 selection:text-blue-900">
+    <div id="__next"><span
+            style="box-sizing: border-box; display: block; overflow: hidden; width: initial; height: initial; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: absolute; inset: 0px;"><img
+                alt="Picture of the classroom" th:src="@{static/img/classroom0.jpeg}" decoding="async" data-nimg="fill"
+                sizes="100vw"
+                style="position: absolute; inset: 0px; box-sizing: border-box; padding: 0px; border: none; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; object-fit: cover;"><noscript></noscript></span>
+        <div class="absolute flex h-full w-full items-center justify-center bg-gray-800/60">
+            <section class="flex max-w-lg flex-col items-center justify-center gap-3 rounded-lg bg-white p-7"><a
+                    href="http://localhost:3000/"><svg viewBox="0 0 136 22" xmlns="http://www.w3.org/2000/svg"
+                        aria-label="HomeTutor Icon" fill="currentColor" class="w-32">
+                        <g id="Group 98">
+                            <g id="home">
+                                <path
+                                    d="M8.5464 6.20842C6.78107 6.20842 5.49211 6.79686 4.65148 8.00176V0.996521H0V20.6112H4.65148V13.1576C4.65148 11.5044 5.49211 10.6077 6.9492 10.6077C8.21014 10.6077 9.05077 11.3643 9.05077 12.8214V20.6112H13.7023V12.2329C13.7023 8.33802 11.5727 6.20842 8.5464 6.20842Z"
+                                    fill="black"></path>
+                                <path
+                                    d="M23.0361 21.0035C25.1377 21.0035 26.903 20.303 28.332 18.8739C29.7891 17.4448 30.5177 15.6795 30.5177 13.606C30.5177 11.5324 29.7891 9.79511 28.332 8.36604C26.903 6.93697 25.1377 6.20842 23.0361 6.20842C20.9625 6.20842 19.1972 6.93697 17.7401 8.36604C16.283 9.79511 15.5545 11.5324 15.5545 13.606C15.5545 15.6795 16.283 17.4448 17.7401 18.8739C19.1972 20.303 20.9625 21.0035 23.0361 21.0035ZM23.0361 16.5201C21.4389 16.5201 20.234 15.3152 20.234 13.606C20.234 11.8967 21.4389 10.6918 23.0361 10.6918C24.6893 10.6918 25.8662 11.8967 25.8662 13.606C25.8662 15.3152 24.6893 16.5201 23.0361 16.5201Z"
+                                    fill="black"></path>
+                                <path
+                                    d="M48.6475 6.20842C46.9102 6.20842 45.5652 6.79686 44.5844 8.00176C43.7998 6.79686 42.5949 6.20842 40.9977 6.20842C39.3445 6.20842 38.0836 6.76884 37.2149 7.9177V6.60072H32.5634V20.6112H37.2149V12.9615C37.2149 11.5044 37.8874 10.6077 39.1484 10.6077C40.3252 10.6077 40.9137 11.2522 40.9137 12.5692V20.6112H45.5652V12.9615C45.5652 11.5044 46.2377 10.6077 47.4986 10.6077C48.6475 10.6077 49.2359 11.2522 49.2359 12.5692V20.6112H53.9154V12.0368C53.9154 8.42208 51.8979 6.20842 48.6475 6.20842Z"
+                                    fill="black"></path>
+                                <path
+                                    d="M70.2394 15.3152C70.3795 14.7828 70.4355 14.1944 70.4355 13.5779C70.4355 11.4764 69.763 9.71104 68.39 8.31C67.017 6.90895 65.3077 6.20842 63.2061 6.20842C61.0485 6.20842 59.2552 6.90895 57.8541 8.33802C56.4531 9.76709 55.7525 11.5324 55.7525 13.634C55.7525 15.7636 56.4531 17.5289 57.8821 18.9299C59.3112 20.303 61.2166 21.0035 63.5984 21.0035C66.2324 21.0035 68.2499 20.1348 69.6229 18.3975L66.2604 16.0438C65.5599 16.6883 64.7192 17.0245 63.7105 17.0245C62.0853 17.0245 61.0485 16.4641 60.5721 15.3152H70.2394ZM60.5161 12.0928C60.9084 10.7758 61.8331 10.1314 63.2622 10.1314C64.6352 10.1314 65.5318 10.7758 65.8961 12.0928H60.5161Z"
+                                    fill="black"></path>
+                            </g>
+                            <g id="tutor">
+                                <path
+                                    d="M80.7405 6.60073H77.8263V2.6778L73.1748 4.07884V6.60073H71.0732V11.0561H73.1748V15.2312C73.1748 17.4448 73.7352 18.986 74.8561 19.8547C76.0049 20.6953 77.9664 20.9475 80.7405 20.6112V16.4081C78.6389 16.5202 77.8263 16.352 77.8263 15.1191V11.0561H80.7405V6.60073Z"
+                                    fill="#094FA0"></path>
+                                <path
+                                    d="M91.9644 14.0543C91.9644 15.7075 91.1238 16.6042 89.6667 16.6042C88.4057 16.6042 87.5651 15.8477 87.5651 14.3906V6.60073H82.9136V14.979C82.9136 18.8739 85.0432 21.0035 88.0695 21.0035C89.8348 21.0035 91.1238 20.4151 91.9644 19.2102V20.6112H96.6159V6.60073H91.9644V14.0543Z"
+                                    fill="#094FA0"></path>
+                                <path
+                                    d="M107.995 6.60073H105.081V2.6778L100.43 4.07884V6.60073H98.328V11.0561H100.43V15.2312C100.43 17.4448 100.99 18.986 102.111 19.8547C103.26 20.6953 105.221 20.9475 107.995 20.6112V16.4081C105.894 16.5202 105.081 16.352 105.081 15.1191V11.0561H107.995V6.60073Z"
+                                    fill="#094FA0"></path>
+                                <path
+                                    d="M117.146 21.0035C119.247 21.0035 121.013 20.303 122.442 18.8739C123.899 17.4448 124.627 15.6795 124.627 13.606C124.627 11.5324 123.899 9.79512 122.442 8.36605C121.013 6.93698 119.247 6.20844 117.146 6.20844C115.072 6.20844 113.307 6.93698 111.85 8.36605C110.393 9.79512 109.664 11.5324 109.664 13.606C109.664 15.6795 110.393 17.4448 111.85 18.8739C113.307 20.303 115.072 21.0035 117.146 21.0035ZM117.146 16.5202C115.548 16.5202 114.344 15.3153 114.344 13.606C114.344 11.8967 115.548 10.6918 117.146 10.6918C118.799 10.6918 119.976 11.8967 119.976 13.606C119.976 15.3153 118.799 16.5202 117.146 16.5202Z"
+                                    fill="#094FA0"></path>
+                                <path
+                                    d="M131.324 6.60073H126.673V20.6112H131.324V14.8109C131.324 13.5499 131.745 12.6252 132.613 12.0648C133.482 11.5044 134.463 11.3083 135.528 11.4764V6.32052C133.594 6.32052 131.857 7.38532 131.324 9.20668V6.60073Z"
+                                    fill="#094FA0"></path>
+                            </g>
+                        </g>
+                    </svg></a>
+                <h1 class="text-3xl font-bold">Welcome to Home Tutor</h1>
+                <p class="font-semibold text-gray-600">The best tutor finding website</p>
+
+
+
+
+
+
+
+                <form class="flex w-full flex-col items-center py-3" th:action="@{/tutor-login}" method="POST">
+                    <input
+                        class="mb-4 w-11/12 rounded-lg border-0 bg-gray-100 focus:ring-2 focus:ring-blue-200 focus:ring-offset-2"
+                        type="text" placeholder="Username" name="username" th:name="username">
+                    <div class="relative mb-1 w-11/12">
+
+                        <input
+                            class="w-full rounded-lg border-0 bg-gray-100 pr-9 focus:ring-2 focus:ring-blue-200 focus:ring-offset-2"
+                            type="password" placeholder="Password" name="password" id="password-field" th:name="password">
+
+                        <svg viewBox="0 0 24 25" xmlns="http://www.w3.org/2000/svg" aria-label="HomeTutor Icon"
+                            fill="currentColor" class="absolute top-1/2 right-2 w-6 -translate-y-1/2"
+                            onclick="showPassword()">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M11.9939 5.00697C16.3881 4.96181 20.3582 7.62343 21.9878 11.707C22.004 11.8063 22.004 11.9076 21.9878 12.007C21.9911 12.12 21.9706 12.2324 21.9279 12.337C20.2967 16.3882 16.3588 19.0322 11.9939 19.007C7.62404 19.029 3.68477 16.3761 2.05996 12.317C2.01984 12.2186 1.99947 12.1132 1.99999 12.007C2.00127 11.8944 2.02155 11.7828 2.05996 11.677C3.69112 7.62574 7.62898 4.98173 11.9939 5.00697ZM8.99573 12.007C8.99573 13.6638 10.3381 15.007 11.9939 15.007C12.7891 15.007 13.5517 14.6909 14.1139 14.1283C14.6762 13.5657 14.9921 12.8026 14.9921 12.007C14.9921 10.3501 13.6498 9.00697 11.9939 9.00697C10.3381 9.00697 8.99573 10.3501 8.99573 12.007Z"
+                                fill="#8B8F92">
+                            </path>
+                        </svg>
+                    </div>
+
+                    <a class="mb-4 w-11/12 text-right font-bold hover:underline"
+                        href="http://localhost:3000/login#">Forgot password?</a>
+                    <button
+                        class="inline-flex  items-center rounded-lg bg-blue-500 p-2 font-semibold text-white transition-colors hover:bg-blue-400 focus:ring-2 focus:ring-blue-200 focus:ring-offset-2 "
+                        onclick="sendRequest()">
+                        Log in
+                    </button>
+                </form>
+
+
+
+
+
+
+                <p class="w-10/12">This is login page for tutor! Please enter your username and password.</p>
+                <p class="font-semibold">Dont't have an account? <a class="font-bold hover:underline"
+                        href="/tutor-register">Sign up</a></p>
+            </section>
+        </div>
+    </div>
+
+</body>
+<script>
+    function showPassword() {
+        var password_field = document.getElementById("password-field");
+        if (password_field.getAttribute("type") === "password") {
+            password_field.setAttribute("type", "text");
+        } else {
+            password_field.setAttribute("type", "password");
+        }
+    }
+
+</script>
+
+</html>

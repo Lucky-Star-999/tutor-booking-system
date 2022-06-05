@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+  </script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+    integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <link rel="stylesheet" th:href="@{static/styles.css}">
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg mx-3">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/tutor-home">
+        <img th:src="@{static/img/logo.PNG}" alt="Logo" height="40">
+      </a>
+
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item me-4">
+            <a class="nav-link" href="/tutor-home">Home</a>
+          </li>
+          <li class="nav-item me-4">
+            <a class="nav-link" href="#">For Parents</a>
+          </li>
+          <li class="nav-item me-4">
+            <a class="nav-link" href="#">For Tutors</a>
+          </li>
+          <li class="nav-item me-4">
+            <a class="nav-link" href="#">News</a>
+          </li>
+        </ul>
+
+        <div class="d-flex align-items-center ">
+          <form action="" class="d-flex align-items-center">
+            <div class="input-group">
+              <span class="input-group-text">
+                <i class="fa-solid fa-magnifying-glass"></i>
+              </span>
+              <input class="form-control me-2" placeholder="Search for class, tutor" style="height: 40px;">
+            </div>
+            <button class="btn btn-primary" type="submit" style="width: 200px">Find a Tutor</button>
+          </form>
+          <div class="ms-2">
+            <div class="dropdown" style="cursor: pointer;">
+              <div class="dropdown-toggle" data-bs-toggle="dropdown">
+                <span th:text="${user.fullname}"></span>
+              </div>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="/tutor-profile">Profile</a></li>
+                <li><a class="dropdown-item" href="/tutor-class">My Classes</a></li>
+                <li><a class="dropdown-item" href="/tutor-request">Requests</a></li>
+                <li>
+                  <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item text-danger" href="/tutor-logout">Logout</a></li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </nav>
+
+  <div class="container-fluid bg-primary bg-opacity-50 d-flex justify-content-center align-items-center flex-column"
+    style="height: 300px;">
+    <h1 class="text-dark">Welcome back, <span th:text="${user.fullname}"></span></h1>
+    <p class="text-dark">Give your knowledge to the world</p>
+  </div>
+
+
+
+
+
+
+
+  <div class="" style="padding: 25px 150px;">
+    <h3 class="mb-4">My Classes</h3>
+    <div class="row">
+
+
+
+      <div class="col-3 mb-4" th:each="class: ${classes}">
+        <div class="card">
+          <div class="card-body">
+
+
+            <div class="d-flex align-items-center justify-content-center">
+              <svg width="112" height="112" viewBox="0 0 112 112" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="112" height="112" rx="56" fill="#F4F5F6"></rect>
+                <g clip-path="url(#clip0_215_38)">
+                  <path
+                    d="M75 32.7419H83C84.0609 32.7419 85.0783 33.1634 85.8284 33.9135C86.5786 34.6637 87 35.6811 87 36.7419V74.7419C87 75.8028 86.5786 76.8202 85.8284 77.5704C85.0783 78.3205 84.0609 78.7419 83 78.7419H29C27.9391 78.7419 26.9217 78.3205 26.1716 77.5704C25.4214 76.8202 25 75.8028 25 74.7419V36.7419C25 35.6811 25.4214 34.6637 26.1716 33.9135C26.9217 33.1634 27.9391 32.7419 29 32.7419H67"
+                    stroke="black" stroke-width="2.06452" stroke-linecap="round" stroke-linejoin="round"></path>
+                  <path d="M25 72.7419H87" stroke="black" stroke-width="2.06452" stroke-linecap="round"
+                    stroke-linejoin="round"></path>
+                  <path
+                    d="M61 72.7419V70.7419C61 70.2115 61.2107 69.7028 61.5858 69.3277C61.9609 68.9526 62.4696 68.7419 63 68.7419H75C75.5304 68.7419 76.0391 68.9526 76.4142 69.3277C76.7893 69.7028 77 70.2115 77 70.7419V72.7419"
+                    stroke="black" stroke-width="2.06452" stroke-linecap="round" stroke-linejoin="round"></path>
+                  <path d="M29 72.7419V36.7419H83V72.7419" stroke="black" stroke-width="2.06452" stroke-linecap="round"
+                    stroke-linejoin="round"></path>
+                  <path d="M37 62.7419L39 46.7419H45L47 62.7419" stroke="#FFC700" stroke-width="2.06452"
+                    stroke-linecap="round" stroke-linejoin="round"></path>
+                  <path d="M38 54.7419H46" stroke="#FFC700" stroke-width="2.06452" stroke-linecap="round"
+                    stroke-linejoin="round"></path>
+                  <path
+                    d="M51 54.7419V62.7419H57C58.0609 62.7419 59.0783 62.3205 59.8284 61.5703C60.5786 60.8202 61 59.8028 61 58.7419C61 57.681 60.5786 56.6636 59.8284 55.9135C59.0783 55.1633 58.0609 54.7419 57 54.7419H51Z"
+                    stroke="#FFC700" stroke-width="2.06452" stroke-linecap="round" stroke-linejoin="round"></path>
+                  <path
+                    d="M51 46.7419V54.7419H55C56.0609 54.7419 57.0783 54.3205 57.8284 53.5704C58.5786 52.8202 59 51.8028 59 50.7419C59 49.6811 58.5786 48.6636 57.8284 47.9135C57.0783 47.1633 56.0609 46.7419 55 46.7419H51Z"
+                    stroke="#FFC700" stroke-width="2.06452" stroke-linecap="round" stroke-linejoin="round"></path>
+                  <path
+                    d="M75 62.7419H71C69.4087 62.7419 67.8826 62.1098 66.7574 60.9846C65.6321 59.8593 65 58.3332 65 56.7419V52.7419C65 51.1506 65.6321 49.6245 66.7574 48.4993C67.8826 47.3741 69.4087 46.7419 71 46.7419H75"
+                    stroke="#FFC700" stroke-width="2.06452" stroke-linecap="round" stroke-linejoin="round"></path>
+                </g>
+                <defs>
+                  <clippath id="clip0_215_38">
+                    <rect width="64" height="64" fill="white" transform="translate(24 24)"></rect>
+                  </clippath>
+                </defs>
+              </svg>
+            </div>
+
+
+            <div class="mb-1 d-flex align-items-center justify-content-center flex-column">
+              <h5 th:text="${class.beautifyList(class.subjects)}">Mathematics</h5>
+              <p>For student grade <span th:text="${class.grade}">7</span></p>
+            </div>
+
+
+
+            <div class="">
+
+
+
+
+
+              <div class="mb-1 d-flex align-items-center">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M3.33333 2H12.6667C13.403 2 14 2.59695 14 3.33333V12.6667C14 13.403 13.403 14 12.6667 14H3.33333C2.59695 14 2 13.403 2 12.6667V3.33333C2 2.59695 2.59695 2 3.33333 2ZM12.6667 12.6667V3.33333H3.33333V12.6667H12.6667ZM8 7.5C8.82843 7.5 9.5 6.82843 9.5 6C9.5 5.17157 8.82843 4.5 8 4.5C7.17157 4.5 6.5 5.17157 6.5 6C6.49822 6.39837 6.65568 6.78094 6.93737 7.06263C7.21906 7.34432 7.60163 7.50178 8 7.5ZM11.2603 11.0952C11.1691 11.2435 11.0074 11.3337 10.8333 11.3333H5.16667C4.99497 11.3291 4.83745 11.2371 4.74949 11.0896C4.66152 10.9421 4.65542 10.7597 4.73333 10.6067L5.33333 9.4C5.55818 8.95376 6.01366 8.67069 6.51333 8.66667H9.48667C9.98634 8.67069 10.4418 8.95376 10.6667 9.4L11.28 10.6067C11.3589 10.7618 11.3514 10.9469 11.2603 11.0952Z"
+                    fill="#636769">
+                  </path>
+                </svg>
+                <span class="ms-2">
+                  Class id: <span th:text="${class.class_id}">3</span>
+                </span>
+              </div>
+
+
+              <div class="mb-1 d-flex align-items-center">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M12.6667 2.66671H12V1.66671C12 1.48261 11.8508 1.33337 11.6667 1.33337H11C10.8159 1.33337 10.6667 1.48261 10.6667 1.66671V2.66671H5.33333V1.66671C5.33333 1.48261 5.18409 1.33337 5 1.33337H4.33333C4.14924 1.33337 4 1.48261 4 1.66671V2.66671H3.33333C2.59695 2.66671 2 3.26366 2 4.00004V12.6667C2 13.4031 2.59695 14 3.33333 14H12.6667C13.403 14 14 13.4031 14 12.6667V4.00004C14 3.26366 13.403 2.66671 12.6667 2.66671ZM12.6667 12.6667H3.33333V5.33337H12.6667V12.6667ZM8.33333 8.00004H7.66667C7.48257 8.00004 7.33333 7.8508 7.33333 7.66671V7.00004C7.33333 6.81595 7.48257 6.66671 7.66667 6.66671H8.33333C8.51743 6.66671 8.66667 6.81595 8.66667 7.00004V7.66671C8.66667 7.8508 8.51743 8.00004 8.33333 8.00004ZM10.3333 8.00004H11C11.1841 8.00004 11.3333 7.8508 11.3333 7.66671V7.00004C11.3333 6.81595 11.1841 6.66671 11 6.66671H10.3333C10.1492 6.66671 10 6.81595 10 7.00004V7.66671C10 7.8508 10.1492 8.00004 10.3333 8.00004ZM5.66667 8.00004H5C4.8159 8.00004 4.66667 7.8508 4.66667 7.66671V7.00004C4.66667 6.81595 4.8159 6.66671 5 6.66671H5.66667C5.85076 6.66671 6 6.81595 6 7.00004V7.66671C6 7.8508 5.85076 8.00004 5.66667 8.00004ZM7.66667 10.6667H8.33333C8.51743 10.6667 8.66667 10.5175 8.66667 10.3334V9.66671C8.66667 9.48261 8.51743 9.33337 8.33333 9.33337H7.66667C7.48257 9.33337 7.33333 9.48261 7.33333 9.66671V10.3334C7.33333 10.5175 7.48257 10.6667 7.66667 10.6667ZM5.66667 10.6667H5C4.8159 10.6667 4.66667 10.5175 4.66667 10.3334V9.66671C4.66667 9.48261 4.8159 9.33337 5 9.33337H5.66667C5.85076 9.33337 6 9.48261 6 9.66671V10.3334C6 10.5175 5.85076 10.6667 5.66667 10.6667Z"
+                    fill="#636769"></path>
+                </svg>
+                <span class="ms-2">
+                  <span th:text="${class.periods.size()}">3</span> sessions per week</span>
+              </div>
+
+
+              <div class="mb-1 d-flex align-items-center">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M7.99992 1.33337C4.31802 1.33337 1.33325 4.31814 1.33325 8.00004C1.33325 11.6819 4.31802 14.6667 7.99992 14.6667C11.6818 14.6667 14.6666 11.6819 14.6666 8.00004C14.6666 6.23193 13.9642 4.53624 12.714 3.286C11.4637 2.03575 9.76803 1.33337 7.99992 1.33337ZM7.99992 13.3334C5.0544 13.3334 2.66659 10.9456 2.66659 8.00004C2.66659 5.05452 5.0544 2.66671 7.99992 2.66671C10.9454 2.66671 13.3333 5.05452 13.3333 8.00004C13.3333 9.41453 12.7713 10.7711 11.7712 11.7713C10.771 12.7715 9.41441 13.3334 7.99992 13.3334ZM8.58659 4.33337V7.76004L11.0066 10.18C11.1344 10.3119 11.1344 10.5215 11.0066 10.6534L10.6533 11.0067C10.5214 11.1346 10.3118 11.1346 10.1799 11.0067L7.51325 8.34004C7.45216 8.27734 7.41653 8.19419 7.41325 8.10671V4.33337C7.41325 4.14928 7.56249 4.00004 7.74659 4.00004H8.25325C8.43735 4.00004 8.58659 4.14928 8.58659 4.33337Z"
+                    fill="#636769"></path>
+                </svg>
+                <span class="ms-2">90 mins per day</span>
+              </div>
+
+
+              <div class="mb-1 d-flex align-items-center">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M13.9999 2.66669H1.99992C1.63173 2.66669 1.33325 2.96516 1.33325 3.33335V12.6667C1.33325 13.0349 1.63173 13.3334 1.99992 13.3334H13.9999C14.3681 13.3334 14.6666 13.0349 14.6666 12.6667V3.33335C14.6666 2.96516 14.3681 2.66669 13.9999 2.66669ZM5.33325 12C5.33325 10.5273 4.13934 9.33335 2.66659 9.33335V6.66669C4.13934 6.66669 5.33325 5.47278 5.33325 4.00002H10.6666C10.6666 5.47278 11.8605 6.66669 13.3333 6.66669V9.33335C11.8605 9.33335 10.6666 10.5273 10.6666 12H5.33325ZM5.99992 8.00002C5.99992 6.89545 6.89535 6.00002 7.99992 6.00002C9.10449 6.00002 9.99992 6.89545 9.99992 8.00002C9.99992 9.10459 9.10449 10 7.99992 10C6.89535 10 5.99992 9.10459 5.99992 8.00002Z"
+                    fill="#636769"></path>
+                </svg>
+                <span class="ms-2"><span th:text="${class.salary}">1500000</span> đ</span>
+              </div>
+
+
+
+
+              <div class="mb-1 d-flex align-items-center">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M14.5199 6.34L8.73992 2.17333C8.57494 2.06054 8.37977 2.00013 8.17992 2H7.81992C7.62007 2.00013 7.4249 2.06054 7.25992 2.17333L1.47992 6.34C1.38813 6.40061 1.33301 6.50334 1.33325 6.61333V6.72C1.33301 6.82999 1.38813 6.93272 1.47992 6.99333L7.25992 11.16C7.4249 11.2728 7.62007 11.3332 7.81992 11.3333H8.17992C8.37977 11.3332 8.57494 11.2728 8.73992 11.16L13.4999 7.73333V13.6667C13.4999 13.8508 13.6492 14 13.8333 14H14.3333C14.5174 14 14.6666 13.8508 14.6666 13.6667V6.61333C14.6668 6.50334 14.6117 6.40061 14.5199 6.34ZM8.07325 10H7.93325L3.33325 6.66667L7.95325 3.33333H8.09325L12.6666 6.66667L8.07325 10ZM6.57325 12.1067C6.93991 12.3599 7.37431 12.497 7.81992 12.5H8.17992C8.61554 12.4989 9.0407 12.3664 9.39992 12.12L11.9999 10.2467V11.3333C11.9999 12.8067 10.2066 14 7.99992 14C5.79325 14 3.99992 12.8067 3.99992 11.3333V10.2467L6.57325 12.1067Z"
+                    fill="#636769"></path>
+                </svg>
+                <span class="ms-2">
+                  <span th:text="${class.requirement}"></span></span>
+              </div>
+
+              <div class="mb-1 d-flex align-items-center">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M2.66675 6.66665C2.66675 3.72113 5.05456 1.33331 8.00008 1.33331C10.9456 1.33331 13.3334 3.72113 13.3334 6.66665C13.3334 9.17094 12.1176 10.1507 10.9842 11.064C10.2409 11.663 9.53304 12.2334 9.22675 13.1866L8.88675 14.2133C8.79142 14.4969 8.51885 14.6822 8.22008 14.6666H7.84675C7.54798 14.6822 7.27541 14.4969 7.18008 14.2133L6.84008 13.1866C6.52152 12.2362 5.80373 11.6663 5.0517 11.0693C3.89941 10.1544 2.66675 9.17577 2.66675 6.66665ZM6.00008 6.66665C6.00008 7.77122 6.89551 8.66665 8.00008 8.66665C8.53051 8.66665 9.03922 8.45593 9.41429 8.08086C9.78937 7.70579 10.0001 7.19708 10.0001 6.66665C10.0001 5.56208 9.10465 4.66665 8.00008 4.66665C6.89551 4.66665 6.00008 5.56208 6.00008 6.66665Z"
+                    fill="#636769"></path>
+                </svg>
+                <span class="ms-2" th:text="${class.address}">Binh Thanh</span>
+              </div>
+              <form th:action="@{/tutor-class-detail}" method="POST"
+                class="mt-3 d-flex align-items-center justify-content-center">
+                <input type="hidden" name="class_id" th:value="${class.class_id}">
+                <button href="#" class="h-10 w-24 inline-flex items-center justify-center rounded-md border 
+                                border-transparent bg-primary-default px-4 py-2 text-sm font-medium text-white 
+                                hover:bg-primary-dark focus:outline-none focus-visible:ring-primary-default"
+                  type="submit">Detail</button>
+              </form>
+            </div>
+
+          </div>
+        </div>
+
+
+      </div>
+
+
+
+
+
+
+
+
+
+    </div>
+
+    <a href="/tutor-class" class="inline-flex h-11 w-fit items-center justify-center 
+        rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-bold 
+        text-primary-default hover:bg-gray-300 focus:outline-none 
+        focus-visible:ring-primary-default text-decoration-none">Show more</a>
+  </div>
+
+
+
+
+  <div class="" style="padding: 25px 150px;">
+    <h3 class="mb-4">Requests from Students</h3>
+    <div class="row">
+
+
+
+      <div class="col-3 mb-4" th:each="requestfromstudent: ${requestsfromstudents}">
+        <div class="card">
+          <div class="card-body">
+
+
+            <div class="d-flex align-items-center justify-content-center">
+              <svg width="112" height="112" viewBox="0 0 112 112" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="112" height="112" rx="56" fill="#F4F5F6"></rect>
+                <g clip-path="url(#clip0_215_38)">
+                  <path
+                    d="M75 32.7419H83C84.0609 32.7419 85.0783 33.1634 85.8284 33.9135C86.5786 34.6637 87 35.6811 87 36.7419V74.7419C87 75.8028 86.5786 76.8202 85.8284 77.5704C85.0783 78.3205 84.0609 78.7419 83 78.7419H29C27.9391 78.7419 26.9217 78.3205 26.1716 77.5704C25.4214 76.8202 25 75.8028 25 74.7419V36.7419C25 35.6811 25.4214 34.6637 26.1716 33.9135C26.9217 33.1634 27.9391 32.7419 29 32.7419H67"
+                    stroke="black" stroke-width="2.06452" stroke-linecap="round" stroke-linejoin="round"></path>
+                  <path d="M25 72.7419H87" stroke="black" stroke-width="2.06452" stroke-linecap="round"
+                    stroke-linejoin="round"></path>
+                  <path
+                    d="M61 72.7419V70.7419C61 70.2115 61.2107 69.7028 61.5858 69.3277C61.9609 68.9526 62.4696 68.7419 63 68.7419H75C75.5304 68.7419 76.0391 68.9526 76.4142 69.3277C76.7893 69.7028 77 70.2115 77 70.7419V72.7419"
+                    stroke="black" stroke-width="2.06452" stroke-linecap="round" stroke-linejoin="round"></path>
+                  <path d="M29 72.7419V36.7419H83V72.7419" stroke="black" stroke-width="2.06452" stroke-linecap="round"
+                    stroke-linejoin="round"></path>
+                  <path d="M37 62.7419L39 46.7419H45L47 62.7419" stroke="#FFC700" stroke-width="2.06452"
+                    stroke-linecap="round" stroke-linejoin="round"></path>
+                  <path d="M38 54.7419H46" stroke="#FFC700" stroke-width="2.06452" stroke-linecap="round"
+                    stroke-linejoin="round"></path>
+                  <path
+                    d="M51 54.7419V62.7419H57C58.0609 62.7419 59.0783 62.3205 59.8284 61.5703C60.5786 60.8202 61 59.8028 61 58.7419C61 57.681 60.5786 56.6636 59.8284 55.9135C59.0783 55.1633 58.0609 54.7419 57 54.7419H51Z"
+                    stroke="#FFC700" stroke-width="2.06452" stroke-linecap="round" stroke-linejoin="round"></path>
+                  <path
+                    d="M51 46.7419V54.7419H55C56.0609 54.7419 57.0783 54.3205 57.8284 53.5704C58.5786 52.8202 59 51.8028 59 50.7419C59 49.6811 58.5786 48.6636 57.8284 47.9135C57.0783 47.1633 56.0609 46.7419 55 46.7419H51Z"
+                    stroke="#FFC700" stroke-width="2.06452" stroke-linecap="round" stroke-linejoin="round"></path>
+                  <path
+                    d="M75 62.7419H71C69.4087 62.7419 67.8826 62.1098 66.7574 60.9846C65.6321 59.8593 65 58.3332 65 56.7419V52.7419C65 51.1506 65.6321 49.6245 66.7574 48.4993C67.8826 47.3741 69.4087 46.7419 71 46.7419H75"
+                    stroke="#FFC700" stroke-width="2.06452" stroke-linecap="round" stroke-linejoin="round"></path>
+                </g>
+                <defs>
+                  <clippath id="clip0_215_38">
+                    <rect width="64" height="64" fill="white" transform="translate(24 24)"></rect>
+                  </clippath>
+                </defs>
+              </svg>
+            </div>
+
+
+            <div class="mb-1 d-flex align-items-center justify-content-center flex-column">
+              <h5 th:text="${requestfromstudent.beautifyList(requestfromstudent.subjects)}">Mathematics</h5>
+              <p>For student grade <span th:text="${requestfromstudent.grade}">7</span></p>
+            </div>
+
+
+
+            <div class="">
+
+
+
+
+
+              <div class="mb-1 d-flex align-items-center">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M3.33333 2H12.6667C13.403 2 14 2.59695 14 3.33333V12.6667C14 13.403 13.403 14 12.6667 14H3.33333C2.59695 14 2 13.403 2 12.6667V3.33333C2 2.59695 2.59695 2 3.33333 2ZM12.6667 12.6667V3.33333H3.33333V12.6667H12.6667ZM8 7.5C8.82843 7.5 9.5 6.82843 9.5 6C9.5 5.17157 8.82843 4.5 8 4.5C7.17157 4.5 6.5 5.17157 6.5 6C6.49822 6.39837 6.65568 6.78094 6.93737 7.06263C7.21906 7.34432 7.60163 7.50178 8 7.5ZM11.2603 11.0952C11.1691 11.2435 11.0074 11.3337 10.8333 11.3333H5.16667C4.99497 11.3291 4.83745 11.2371 4.74949 11.0896C4.66152 10.9421 4.65542 10.7597 4.73333 10.6067L5.33333 9.4C5.55818 8.95376 6.01366 8.67069 6.51333 8.66667H9.48667C9.98634 8.67069 10.4418 8.95376 10.6667 9.4L11.28 10.6067C11.3589 10.7618 11.3514 10.9469 11.2603 11.0952Z"
+                    fill="#636769">
+                  </path>
+                </svg>
+                <span class="ms-2">
+                  Request id: <span th:text="${requestfromstudent.request_id}">3</span>
+                </span>
+              </div>
+
+
+              <div class="mb-1 d-flex align-items-center">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M12.6667 2.66671H12V1.66671C12 1.48261 11.8508 1.33337 11.6667 1.33337H11C10.8159 1.33337 10.6667 1.48261 10.6667 1.66671V2.66671H5.33333V1.66671C5.33333 1.48261 5.18409 1.33337 5 1.33337H4.33333C4.14924 1.33337 4 1.48261 4 1.66671V2.66671H3.33333C2.59695 2.66671 2 3.26366 2 4.00004V12.6667C2 13.4031 2.59695 14 3.33333 14H12.6667C13.403 14 14 13.4031 14 12.6667V4.00004C14 3.26366 13.403 2.66671 12.6667 2.66671ZM12.6667 12.6667H3.33333V5.33337H12.6667V12.6667ZM8.33333 8.00004H7.66667C7.48257 8.00004 7.33333 7.8508 7.33333 7.66671V7.00004C7.33333 6.81595 7.48257 6.66671 7.66667 6.66671H8.33333C8.51743 6.66671 8.66667 6.81595 8.66667 7.00004V7.66671C8.66667 7.8508 8.51743 8.00004 8.33333 8.00004ZM10.3333 8.00004H11C11.1841 8.00004 11.3333 7.8508 11.3333 7.66671V7.00004C11.3333 6.81595 11.1841 6.66671 11 6.66671H10.3333C10.1492 6.66671 10 6.81595 10 7.00004V7.66671C10 7.8508 10.1492 8.00004 10.3333 8.00004ZM5.66667 8.00004H5C4.8159 8.00004 4.66667 7.8508 4.66667 7.66671V7.00004C4.66667 6.81595 4.8159 6.66671 5 6.66671H5.66667C5.85076 6.66671 6 6.81595 6 7.00004V7.66671C6 7.8508 5.85076 8.00004 5.66667 8.00004ZM7.66667 10.6667H8.33333C8.51743 10.6667 8.66667 10.5175 8.66667 10.3334V9.66671C8.66667 9.48261 8.51743 9.33337 8.33333 9.33337H7.66667C7.48257 9.33337 7.33333 9.48261 7.33333 9.66671V10.3334C7.33333 10.5175 7.48257 10.6667 7.66667 10.6667ZM5.66667 10.6667H5C4.8159 10.6667 4.66667 10.5175 4.66667 10.3334V9.66671C4.66667 9.48261 4.8159 9.33337 5 9.33337H5.66667C5.85076 9.33337 6 9.48261 6 9.66671V10.3334C6 10.5175 5.85076 10.6667 5.66667 10.6667Z"
+                    fill="#636769"></path>
+                </svg>
+                <span class="ms-2">
+                  <span th:text="${requestfromstudent.periods.size()}">3</span> sessions per
+                  week</span>
+              </div>
+
+
+              <div class="mb-1 d-flex align-items-center">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M7.99992 1.33337C4.31802 1.33337 1.33325 4.31814 1.33325 8.00004C1.33325 11.6819 4.31802 14.6667 7.99992 14.6667C11.6818 14.6667 14.6666 11.6819 14.6666 8.00004C14.6666 6.23193 13.9642 4.53624 12.714 3.286C11.4637 2.03575 9.76803 1.33337 7.99992 1.33337ZM7.99992 13.3334C5.0544 13.3334 2.66659 10.9456 2.66659 8.00004C2.66659 5.05452 5.0544 2.66671 7.99992 2.66671C10.9454 2.66671 13.3333 5.05452 13.3333 8.00004C13.3333 9.41453 12.7713 10.7711 11.7712 11.7713C10.771 12.7715 9.41441 13.3334 7.99992 13.3334ZM8.58659 4.33337V7.76004L11.0066 10.18C11.1344 10.3119 11.1344 10.5215 11.0066 10.6534L10.6533 11.0067C10.5214 11.1346 10.3118 11.1346 10.1799 11.0067L7.51325 8.34004C7.45216 8.27734 7.41653 8.19419 7.41325 8.10671V4.33337C7.41325 4.14928 7.56249 4.00004 7.74659 4.00004H8.25325C8.43735 4.00004 8.58659 4.14928 8.58659 4.33337Z"
+                    fill="#636769"></path>
+                </svg>
+                <span class="ms-2">90 mins per day</span>
+              </div>
+
+
+              <div class="mb-1 d-flex align-items-center">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M13.9999 2.66669H1.99992C1.63173 2.66669 1.33325 2.96516 1.33325 3.33335V12.6667C1.33325 13.0349 1.63173 13.3334 1.99992 13.3334H13.9999C14.3681 13.3334 14.6666 13.0349 14.6666 12.6667V3.33335C14.6666 2.96516 14.3681 2.66669 13.9999 2.66669ZM5.33325 12C5.33325 10.5273 4.13934 9.33335 2.66659 9.33335V6.66669C4.13934 6.66669 5.33325 5.47278 5.33325 4.00002H10.6666C10.6666 5.47278 11.8605 6.66669 13.3333 6.66669V9.33335C11.8605 9.33335 10.6666 10.5273 10.6666 12H5.33325ZM5.99992 8.00002C5.99992 6.89545 6.89535 6.00002 7.99992 6.00002C9.10449 6.00002 9.99992 6.89545 9.99992 8.00002C9.99992 9.10459 9.10449 10 7.99992 10C6.89535 10 5.99992 9.10459 5.99992 8.00002Z"
+                    fill="#636769"></path>
+                </svg>
+                <span class="ms-2"><span th:text="${requestfromstudent.salary}">1500000</span> đ</span>
+              </div>
+
+
+
+
+              <div class="mb-1 d-flex align-items-center">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M14.5199 6.34L8.73992 2.17333C8.57494 2.06054 8.37977 2.00013 8.17992 2H7.81992C7.62007 2.00013 7.4249 2.06054 7.25992 2.17333L1.47992 6.34C1.38813 6.40061 1.33301 6.50334 1.33325 6.61333V6.72C1.33301 6.82999 1.38813 6.93272 1.47992 6.99333L7.25992 11.16C7.4249 11.2728 7.62007 11.3332 7.81992 11.3333H8.17992C8.37977 11.3332 8.57494 11.2728 8.73992 11.16L13.4999 7.73333V13.6667C13.4999 13.8508 13.6492 14 13.8333 14H14.3333C14.5174 14 14.6666 13.8508 14.6666 13.6667V6.61333C14.6668 6.50334 14.6117 6.40061 14.5199 6.34ZM8.07325 10H7.93325L3.33325 6.66667L7.95325 3.33333H8.09325L12.6666 6.66667L8.07325 10ZM6.57325 12.1067C6.93991 12.3599 7.37431 12.497 7.81992 12.5H8.17992C8.61554 12.4989 9.0407 12.3664 9.39992 12.12L11.9999 10.2467V11.3333C11.9999 12.8067 10.2066 14 7.99992 14C5.79325 14 3.99992 12.8067 3.99992 11.3333V10.2467L6.57325 12.1067Z"
+                    fill="#636769"></path>
+                </svg>
+                <span class="ms-2">
+                  <span th:text="${requestfromstudent.requirement}"></span>
+                </span>
+              </div>
+
+              <div class="mb-1 d-flex align-items-center">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M2.66675 6.66665C2.66675 3.72113 5.05456 1.33331 8.00008 1.33331C10.9456 1.33331 13.3334 3.72113 13.3334 6.66665C13.3334 9.17094 12.1176 10.1507 10.9842 11.064C10.2409 11.663 9.53304 12.2334 9.22675 13.1866L8.88675 14.2133C8.79142 14.4969 8.51885 14.6822 8.22008 14.6666H7.84675C7.54798 14.6822 7.27541 14.4969 7.18008 14.2133L6.84008 13.1866C6.52152 12.2362 5.80373 11.6663 5.0517 11.0693C3.89941 10.1544 2.66675 9.17577 2.66675 6.66665ZM6.00008 6.66665C6.00008 7.77122 6.89551 8.66665 8.00008 8.66665C8.53051 8.66665 9.03922 8.45593 9.41429 8.08086C9.78937 7.70579 10.0001 7.19708 10.0001 6.66665C10.0001 5.56208 9.10465 4.66665 8.00008 4.66665C6.89551 4.66665 6.00008 5.56208 6.00008 6.66665Z"
+                    fill="#636769"></path>
+                </svg>
+                <span class="ms-2" th:text="${requestfromstudent.address}">Binh Thanh</span>
+              </div>
+              <form th:action="@{/tutor-request-detail}" method="POST"
+                class="mt-3 d-flex align-items-center justify-content-center">
+                <input type="hidden" name="request_id" th:value="${requestfromstudent.request_id}">
+                <button href="#" class="h-10 w-24 inline-flex items-center justify-center rounded-md border 
+                                border-transparent bg-primary-default px-4 py-2 text-sm font-medium text-white 
+                                hover:bg-primary-dark focus:outline-none focus-visible:ring-primary-default"
+                  type="submit">Detail</button>
+              </form>
+            </div>
+
+          </div>
+        </div>
+
+
+      </div>
+
+
+
+
+
+
+
+
+
+    </div>
+
+    <a href="/tutor-request" class="inline-flex h-11 w-fit items-center justify-center 
+        rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-bold 
+        text-primary-default hover:bg-gray-300 focus:outline-none 
+        focus-visible:ring-primary-default text-decoration-none">Show more</a>
+  </div>
+
+
+
+
+
+
+
+
+  <div class="" style="padding: 25px 150px; background-color: #e9f3ff;">
+    <h4 class="mb-5">Find the right tutor for all levels</h4>
+
+    <div class="d-flex justify-content-between">
+      <div>
+        <div class="mb-2">
+          <div class="mb-1 d-flex align-items-center">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" clip-rule="evenodd"
+                d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 9.34784 20.9464 6.8043 19.0711 4.92893C17.1957 3.05357 14.6522 2 12 2ZM12 20C7.58172 20 4 16.4183 4 12C4 7.58172 7.58172 4 12 4C16.4183 4 20 7.58172 20 12C20 14.1217 19.1571 16.1566 17.6569 17.6569C16.1566 19.1571 14.1217 20 12 20ZM15.12 8.49C15.3144 8.29943 15.6256 8.29943 15.82 8.49L16.32 9.02C16.4147 9.11388 16.4679 9.24168 16.4679 9.375C16.4679 9.50832 16.4147 9.63612 16.32 9.73L10.7 15.35C10.6093 15.4467 10.4826 15.5015 10.35 15.5015C10.2174 15.5015 10.0907 15.4467 10 15.35L7.65 12.98C7.55534 12.8861 7.5021 12.7583 7.5021 12.625C7.5021 12.4917 7.55534 12.3639 7.65 12.27L8.18 11.74C8.27073 11.6433 8.39741 11.5885 8.53 11.5885C8.66259 11.5885 8.78927 11.6433 8.88 11.74L10.38 13.23L15.12 8.49Z"
+                fill="#094FA0"></path>
+            </svg>
+            <span class="fw-bold ms-2">Access to many talented tutors nationwide</span>
+          </div>
+          <div>Find the right tutor that suits you most, for the best cost.</p>
+          </div>
+        </div>
+
+        <div class="mb-2">
+          <div class="mb-1 d-flex align-items-center">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" clip-rule="evenodd"
+                d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 9.34784 20.9464 6.8043 19.0711 4.92893C17.1957 3.05357 14.6522 2 12 2ZM12 20C7.58172 20 4 16.4183 4 12C4 7.58172 7.58172 4 12 4C16.4183 4 20 7.58172 20 12C20 14.1217 19.1571 16.1566 17.6569 17.6569C16.1566 19.1571 14.1217 20 12 20ZM15.12 8.49C15.3144 8.29943 15.6256 8.29943 15.82 8.49L16.32 9.02C16.4147 9.11388 16.4679 9.24168 16.4679 9.375C16.4679 9.50832 16.4147 9.63612 16.32 9.73L10.7 15.35C10.6093 15.4467 10.4826 15.5015 10.35 15.5015C10.2174 15.5015 10.0907 15.4467 10 15.35L7.65 12.98C7.55534 12.8861 7.5021 12.7583 7.5021 12.625C7.5021 12.4917 7.55534 12.3639 7.65 12.27L8.18 11.74C8.27073 11.6433 8.39741 11.5885 8.53 11.5885C8.66259 11.5885 8.78927 11.6433 8.88 11.74L10.38 13.23L15.12 8.49Z"
+                fill="#094FA0"></path>
+            </svg>
+            <span class="fw-bold ms-2">Free 1 day trial</span>
+          </div>
+          <div>Trial class for one day before paying the tutor fee.</p>
+          </div>
+        </div>
+
+        <div class="mb-2">
+          <div class="mb-1 d-flex align-items-center">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" clip-rule="evenodd"
+                d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 9.34784 20.9464 6.8043 19.0711 4.92893C17.1957 3.05357 14.6522 2 12 2ZM12 20C7.58172 20 4 16.4183 4 12C4 7.58172 7.58172 4 12 4C16.4183 4 20 7.58172 20 12C20 14.1217 19.1571 16.1566 17.6569 17.6569C16.1566 19.1571 14.1217 20 12 20ZM15.12 8.49C15.3144 8.29943 15.6256 8.29943 15.82 8.49L16.32 9.02C16.4147 9.11388 16.4679 9.24168 16.4679 9.375C16.4679 9.50832 16.4147 9.63612 16.32 9.73L10.7 15.35C10.6093 15.4467 10.4826 15.5015 10.35 15.5015C10.2174 15.5015 10.0907 15.4467 10 15.35L7.65 12.98C7.55534 12.8861 7.5021 12.7583 7.5021 12.625C7.5021 12.4917 7.55534 12.3639 7.65 12.27L8.18 11.74C8.27073 11.6433 8.39741 11.5885 8.53 11.5885C8.66259 11.5885 8.78927 11.6433 8.88 11.74L10.38 13.23L15.12 8.49Z"
+                fill="#094FA0"></path>
+            </svg>
+            <span class="fw-bold ms-2">Protected payments</span>
+          </div>
+          <div>Always know what you'll pay upfront, no costs incurred.</p>
+          </div>
+        </div>
+
+        <div class="mb-2">
+          <div class="mb-1 d-flex align-items-center">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" clip-rule="evenodd"
+                d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 9.34784 20.9464 6.8043 19.0711 4.92893C17.1957 3.05357 14.6522 2 12 2ZM12 20C7.58172 20 4 16.4183 4 12C4 7.58172 7.58172 4 12 4C16.4183 4 20 7.58172 20 12C20 14.1217 19.1571 16.1566 17.6569 17.6569C16.1566 19.1571 14.1217 20 12 20ZM15.12 8.49C15.3144 8.29943 15.6256 8.29943 15.82 8.49L16.32 9.02C16.4147 9.11388 16.4679 9.24168 16.4679 9.375C16.4679 9.50832 16.4147 9.63612 16.32 9.73L10.7 15.35C10.6093 15.4467 10.4826 15.5015 10.35 15.5015C10.2174 15.5015 10.0907 15.4467 10 15.35L7.65 12.98C7.55534 12.8861 7.5021 12.7583 7.5021 12.625C7.5021 12.4917 7.55534 12.3639 7.65 12.27L8.18 11.74C8.27073 11.6433 8.39741 11.5885 8.53 11.5885C8.66259 11.5885 8.78927 11.6433 8.88 11.74L10.38 13.23L15.12 8.49Z"
+                fill="#094FA0"></path>
+            </svg>
+            <span class="fw-bold ms-2">Customer support 24/7</span>
+          </div>
+          <div>Contact our support team if you have any concerns.</p>
+          </div>
+        </div>
+      </div>
+      <div>
+        <img th:src="@{static/img/study.PNG}" alt="Study">
+      </div>
+    </div>
+
+
+
+
+
+  </div>
+
+  <footer class="" style="padding: 25px 150px; background-color: #f3f4f5;">
+    <div class="row">
+      <div class="col-4">
+        <div class="d-flex flex-column">
+          <strong class="mb-2 fs-4">Subjects</strong>
+          <a href="#" class="mb-2 text-decoration-none text-secondary">Maths</a>
+          <a href="#" class="mb-2 text-decoration-none text-secondary">Literature</a>
+          <a href="#" class="mb-2 text-decoration-none text-secondary">English</a>
+          <a href="#" class="mb-2 text-decoration-none text-secondary">Physics</a>
+          <a href="#" class="mb-2 text-decoration-none text-secondary">Chemistry</a>
+          <a href="#" class="mb-2 text-decoration-none text-secondary">Geography</a>
+          <a href="#" class="mb-2 text-decoration-none text-secondary">History</a>
+          <a href="#" class="mb-2 text-decoration-none text-secondary">Biology</a>
+          <a href="#" class="mb-2 text-decoration-none text-secondary">Technology</a>
+          <a href="#" class="mb-2 text-decoration-none text-secondary">Information Technology</a>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="d-flex flex-column">
+          <strong class="mb-2 fs-4">About</strong>
+          <a href="#" class="mb-2 text-decoration-none text-secondary">Careers</a>
+          <a href="#" class="mb-2 text-decoration-none text-secondary">Blogs</a>
+          <a href="#" class="mb-2 text-decoration-none text-secondary">Become a tutor</a>
+          <a href="#" class="mb-2 text-decoration-none text-secondary">Privacy Policy</a>
+          <a href="#" class="mb-2 text-decoration-none text-secondary">Terms of Service</a>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="d-flex flex-column">
+          <strong class="mb-2 fs-4">Support</strong>
+          <a href="#" class="mb-2 text-decoration-none text-secondary">Help & Support</a>
+          <a href="#" class="mb-2 text-decoration-none text-secondary">Trust & Safety</a>
+          <a href="#" class="mb-2 text-decoration-none text-secondary">Payment Policy</a>
+          <a href="#" class="mb-2 text-decoration-none text-secondary">Refund Policy</a>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <div>
+      © 2022, Home Tutor
+    </div>
+  </footer>
+
+
+
+</body>
+
+</html>
